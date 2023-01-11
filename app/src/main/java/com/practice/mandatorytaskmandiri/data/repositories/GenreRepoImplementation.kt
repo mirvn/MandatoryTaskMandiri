@@ -27,10 +27,8 @@ class GenreRepoImplementation(private val apiServices: ApiServices) : GenreRepo 
             value = ResponseUtil.Loading
         }
         return try {
-            val response = apiServices.getGenres(BuildConfig.API_KEY_TOKEN)
+            val response = apiServices.getGenres(BuildConfig.API_KEY_TOKEN, "en-US")
             val result = response.body()
-            Log.e(TAG, "getGenres: $result")
-
             if (response.isSuccessful && result != null) {
                 resultGenre.value = ResponseUtil.Success(result)
                 resultGenre
