@@ -12,14 +12,12 @@ import java.util.concurrent.TimeUnit
 object ApiConfig {
 
     private const val BASE_URL = BuildConfig.URL_TMDB
-    private const val NETWORK_CALL_TIMEOUT = 120L
+    private const val NETWORK_CALL_TIMEOUT = 10L
 
     private fun provideHttpInterceptor(context: Context): Interceptor {
         return Interceptor { chain ->
             var request = chain.request()
-            val token = BuildConfig.API_KEY_TOKEN
             request = request.newBuilder()
-//                .addHeader("api_key", token)
                 .build()
             return@Interceptor chain.proceed(request)
         }
@@ -28,9 +26,6 @@ object ApiConfig {
     private fun provideHttpClient(context: Context): OkHttpClient {
         return OkHttpClient.Builder().apply {
             addInterceptor(provideHttpInterceptor(context))
-            /*if (BuildConfig.DEBUG) {
-                addInterceptor(provideLoggingInterceptor(context))
-            }*/
             callTimeout(NETWORK_CALL_TIMEOUT, TimeUnit.SECONDS)
             connectTimeout(NETWORK_CALL_TIMEOUT, TimeUnit.SECONDS)
             readTimeout(NETWORK_CALL_TIMEOUT, TimeUnit.SECONDS)
