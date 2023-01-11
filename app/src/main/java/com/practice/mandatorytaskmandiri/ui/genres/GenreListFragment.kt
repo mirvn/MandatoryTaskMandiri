@@ -60,16 +60,20 @@ class GenreListFragment : Fragment() {
                 when (result) {
                     is ResponseUtil.Success -> {
                         // show rv
+                        binding.progressBar5.visibility = View.INVISIBLE
                         val listGenre = result.data.toListGenre()
                         Log.e(TAG, "getGenres: $listGenre ")
                         genreListAdapter.submitList(listGenre)
                     }
                     is ResponseUtil.Loading -> {
+                        binding.progressBar5.visibility = View.VISIBLE
                         Toast.makeText(requireContext(), "test loading", Toast.LENGTH_SHORT).show()
                     }
                     is ResponseUtil.Error -> {
+                        binding.progressBar5.visibility = View.INVISIBLE
                         Log.e(TAG, "getGenres: ${result.errorMessage}")
-                        Toast.makeText(requireContext(), result.errorMessage, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), result.errorMessage, Toast.LENGTH_SHORT)
+                            .show()
                     }
                     else -> {
                     }
