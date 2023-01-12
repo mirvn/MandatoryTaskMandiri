@@ -20,6 +20,7 @@ android {
         // Config
         buildConfigField("String", "URL_TMDB", URL_TMDB)
         buildConfigField("String", "API_KEY_TOKEN", API_KEY_TOKEN)
+        buildConfigField("String", "URL_TMDB_IMAGE", URL_TMDB_IMAGE)
 
     }
 
@@ -60,6 +61,9 @@ dependencies {
     //Ktx
     implementation "androidx.activity:activity-ktx:1.6.1"
     implementation "androidx.fragment:fragment-ktx:1.5.5"
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
 
 
