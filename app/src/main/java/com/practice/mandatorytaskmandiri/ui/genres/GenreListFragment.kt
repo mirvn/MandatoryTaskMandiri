@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.practice.mandatorytaskmandiri.common.ViewModelFactory
+import com.practice.mandatorytaskmandiri.common.adapter.GenreListAdapter
 import com.practice.mandatorytaskmandiri.data.repositories.GenreRepoImplementation
 import com.practice.mandatorytaskmandiri.data.source.remote.network.ApiConfig
 import com.practice.mandatorytaskmandiri.data.source.remote.response.toListGenre
@@ -27,9 +29,11 @@ class GenreListFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private val vm: GenreListFragmentViewModel by viewModels {
-        ViewModelFactory(GenreRepoImplementation.getInstance(ApiConfig.provideApiService(requireContext())))
+        ViewModelFactory().ViewModelFactoryGenreList(
+            GenreRepoImplementation.getInstance(ApiConfig.provideApiService(requireContext()))
+        )
     }
-    private val genreListAdapter = GenreListAdapter()
+    private lateinit var genreListAdapter: GenreListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,9 +48,6 @@ class GenreListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRv()
         getGenres()
-//        binding.buttonFirst.setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-//        }
     }
 
     override fun onDestroyView() {
@@ -83,6 +84,7 @@ class GenreListFragment : Fragment() {
     }
 
     private fun initRv() {
+        genreListAdapter = GenreListAdapter(findNavController())
         val rv = binding.rvMoviesGenre
         rv.setHasFixedSize(true)
         rv.layoutManager = LinearLayoutManager(requireContext())
