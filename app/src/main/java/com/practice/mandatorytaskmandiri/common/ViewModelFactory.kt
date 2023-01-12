@@ -2,12 +2,25 @@ package com.practice.mandatorytaskmandiri.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.practice.mandatorytaskmandiri.data.repositories.GenreRepo
 import com.practice.mandatorytaskmandiri.data.repositories.GenreRepoImplementation
+import com.practice.mandatorytaskmandiri.data.repositories.MoviesByGenreRepoImplementation
 import com.practice.mandatorytaskmandiri.ui.genres.GenreListFragmentViewModel
+import com.practice.mandatorytaskmandiri.ui.moviesbygenre.MoviesByGenreFragmentViewModel
 
-class ViewModelFactory(private val argument: GenreRepoImplementation) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return GenreListFragmentViewModel(argument) as T
+class ViewModelFactory {
+    inner class ViewModelFactoryGenreList(
+        private val genreRepoImplementation: GenreRepoImplementation
+    ) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return GenreListFragmentViewModel(genreRepoImplementation) as T
+        }
+    }
+
+    inner class ViewModelFactoryMoviesByGenre(
+        private val moviesByGenreRepoImplementation: MoviesByGenreRepoImplementation
+    ) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return MoviesByGenreFragmentViewModel(moviesByGenreRepoImplementation) as T
+        }
     }
 }
