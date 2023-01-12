@@ -11,9 +11,10 @@ import com.practice.mandatorytaskmandiri.R
 import com.practice.mandatorytaskmandiri.data.model.GenreModel
 import com.practice.mandatorytaskmandiri.databinding.GenreItemRvBinding
 
-class GenreListAdapter(private val navController: NavController) : ListAdapter<GenreModel, GenreListAdapter.GenresViewHolder>(
-    diffCallBack
-) {
+class GenreListAdapter(private val navController: NavController) :
+    ListAdapter<GenreModel, GenreListAdapter.GenresViewHolder>(
+        diffCallBack
+    ) {
     companion object {
         val diffCallBack = object : DiffUtil.ItemCallback<GenreModel>() {
             override fun areItemsTheSame(oldItem: GenreModel, newItem: GenreModel): Boolean {

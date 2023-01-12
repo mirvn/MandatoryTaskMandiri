@@ -1,6 +1,5 @@
 package com.practice.mandatorytaskmandiri.data.repositories
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.practice.mandatorytaskmandiri.BuildConfig
@@ -9,6 +8,7 @@ import com.practice.mandatorytaskmandiri.data.source.remote.response.GenreRespon
 import com.practice.mandatorytaskmandiri.utils.ResponseUtil
 
 private const val TAG = "GenreRepoImplementation"
+
 class GenreRepoImplementation(private val apiServices: ApiServices) : GenreRepo {
     companion object {
         @Volatile
@@ -22,6 +22,7 @@ class GenreRepoImplementation(private val apiServices: ApiServices) : GenreRepo 
             }
         }
     }
+
     override suspend fun getGenres(): LiveData<ResponseUtil<GenreResponse>> {
         val resultGenre = MutableLiveData<ResponseUtil<GenreResponse>>().apply {
             value = ResponseUtil.Loading

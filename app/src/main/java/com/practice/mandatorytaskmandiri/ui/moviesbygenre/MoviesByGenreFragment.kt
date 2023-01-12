@@ -1,7 +1,6 @@
 package com.practice.mandatorytaskmandiri.ui.moviesbygenre // ktlint-disable filename
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 private const val TAG = "SecondFragment"
+
 class SecondFragment : Fragment() {
 
     private var _binding: FragmentMoviesByGenreBinding? = null
@@ -85,7 +85,10 @@ class SecondFragment : Fragment() {
 
     private fun setGenreModelBundle() {
         genreModelBundle =
-            arguments?.getParcelable(resources.getString(R.string.genre_model_key)) ?: GenreModel(0, "")
+            arguments?.getParcelable(resources.getString(R.string.genre_model_key)) ?: GenreModel(
+                0,
+                ""
+            )
         (activity as AppCompatActivity).supportActionBar?.title = genreModelBundle.name + " Movies"
     }
 
@@ -119,7 +122,7 @@ class SecondFragment : Fragment() {
                         moviesByGenre.results.map { movieResult ->
                             mutableResult.add(movieResult)
                             moviesByGenreAdapter.submitList(mutableResult)
-                            moviesByGenreAdapter.notifyItemRangeChanged(0,mutableResult.size)
+                            moviesByGenreAdapter.notifyItemRangeChanged(0, mutableResult.size)
                         }
                     }
                     is ResponseUtil.Loading -> {

@@ -7,6 +7,7 @@ import com.practice.mandatorytaskmandiri.data.source.remote.response.MoviesByGen
 import com.practice.mandatorytaskmandiri.utils.ResponseUtil
 
 private const val TAG = "GenreRepoImplementation"
+
 class MoviesByGenreRepoImplementation(private val apiServices: ApiServices) : MoviesByGenreRepo {
     companion object {
         @Volatile
@@ -20,6 +21,7 @@ class MoviesByGenreRepoImplementation(private val apiServices: ApiServices) : Mo
             }
         }
     }
+
     override suspend fun getMoviesByGenre(
         api_key: String,
         language: String,
@@ -53,7 +55,8 @@ class MoviesByGenreRepoImplementation(private val apiServices: ApiServices) : Mo
                 resultMoviesByGenre
             }
         } catch (e: java.lang.Exception) {
-            resultMoviesByGenre.value = ResponseUtil.Error(e.message.toString() ?: "An Error Occurred")
+            resultMoviesByGenre.value =
+                ResponseUtil.Error(e.message.toString() ?: "An Error Occurred")
             resultMoviesByGenre
         }
     }

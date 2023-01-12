@@ -17,17 +17,23 @@ class MoviesByGenreAdapter(private val navController: NavController) :
     ) {
     companion object {
         val diffCallBack = object : DiffUtil.ItemCallback<MovieByGenreModel.Result>() {
-            override fun areItemsTheSame(oldItem: MovieByGenreModel.Result, newItem: MovieByGenreModel.Result): Boolean {
+            override fun areItemsTheSame(
+                oldItem: MovieByGenreModel.Result,
+                newItem: MovieByGenreModel.Result
+            ): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: MovieByGenreModel.Result, newItem: MovieByGenreModel.Result): Boolean {
-                return oldItem == newItem
+            override fun areContentsTheSame(
+                oldItem: MovieByGenreModel.Result,
+                newItem: MovieByGenreModel.Result
+            ): Boolean {
+                return oldItem.id == newItem.id
             }
         }
     }
 
-    inner class GenresViewHolder(val view: MovieByGenreItemBinding) :
+    inner class GenresViewHolder(private val view: MovieByGenreItemBinding) :
         RecyclerView.ViewHolder(view.root) {
         fun bindImage(model: MovieByGenreModel.Result) {
 //            val bundle = Bundle() // Bundle to pass genreId

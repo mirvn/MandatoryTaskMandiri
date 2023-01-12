@@ -27,6 +27,6 @@ interface ApiServices {
         @Query("include_video") include_video: String,
         @Query("page") page: String,
         @Query("with_genres") with_genres: String,
-        @Query("with_watch_monetization_types") with_watch_monetization_types: String,
+        @Query("with_watch_monetization_types") with_watch_monetization_types: String
     ): Response<MoviesByGenreResponse>
 }

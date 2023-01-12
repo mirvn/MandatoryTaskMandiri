@@ -22,10 +22,10 @@ class MoviesByGenreFragmentViewModel(
     ): LiveData<ResponseUtil<MoviesByGenreResponse>> = moviesByGenreRepo.getMoviesByGenre(
         api_key = api_key,
         language = language,
-        sort_by =  sort_by,
+        sort_by = sort_by,
         include_adult = include_adult,
         include_video = include_video,
-        page =  page,
+        page = page,
         with_genres = with_genres,
         with_watch_monetization_types = with_watch_monetization_types
     )
