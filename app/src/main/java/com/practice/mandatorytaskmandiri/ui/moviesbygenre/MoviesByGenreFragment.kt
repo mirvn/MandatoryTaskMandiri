@@ -9,13 +9,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.practice.mandatorytaskmandiri.BuildConfig
 import com.practice.mandatorytaskmandiri.R
 import com.practice.mandatorytaskmandiri.common.ViewModelFactory
 import com.practice.mandatorytaskmandiri.common.adapter.MoviesByGenreAdapter
+import com.practice.mandatorytaskmandiri.common.heleper.PaginationScrollListener
 import com.practice.mandatorytaskmandiri.data.model.GenreModel
+import com.practice.mandatorytaskmandiri.data.model.MovieByGenreModel
 import com.practice.mandatorytaskmandiri.data.repositories.MoviesByGenreRepoImplementation
 import com.practice.mandatorytaskmandiri.data.source.remote.network.ApiConfig
 import com.practice.mandatorytaskmandiri.data.source.remote.response.toMovieByGenre
@@ -40,6 +43,14 @@ class SecondFragment : Fragment() {
             MoviesByGenreRepoImplementation.getInstance(ApiConfig.provideApiService(requireContext()))
         )
     }
+    private lateinit var layoutManager: GridLayoutManager
+
+    // paging
+    private var isLastPage = false
+    private var isLoadMore = false
+    var page = 1
+
+    private val mutableResult = mutableListOf<MovieByGenreModel.Result>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,6 +75,7 @@ class SecondFragment : Fragment() {
             with_genres = genreModelBundle.id.toString(),
             with_watch_monetization_types = getString(R.string.with_watch_monetization_types_flatrate)
         )
+        loadMore()
     }
 
     override fun onDestroyView() {
@@ -101,18 +113,21 @@ class SecondFragment : Fragment() {
                 when (result) {
                     is ResponseUtil.Success -> {
                         // show rv
-                        binding.progressBar6.visibility = View.INVISIBLE
+                        isLoadMore = false
+                        binding.progressBar6.visibility = View.GONE
                         val moviesByGenre = result.data.toMovieByGenre()
-                        Log.e(TAG, "movieByGenre: $moviesByGenre ")
-                        moviesByGenreAdapter.submitList(moviesByGenre.results)
+                        moviesByGenre.results.map { movieResult ->
+                            mutableResult.add(movieResult)
+                            moviesByGenreAdapter.submitList(mutableResult)
+                            moviesByGenreAdapter.notifyItemRangeChanged(0,mutableResult.size)
+                        }
                     }
                     is ResponseUtil.Loading -> {
                         binding.progressBar6.visibility = View.VISIBLE
-                        Toast.makeText(requireContext(), "test loading", Toast.LENGTH_SHORT).show()
                     }
                     is ResponseUtil.Error -> {
-                        binding.progressBar6.visibility = View.INVISIBLE
-                        Log.e(TAG, "getGenres: ${result.errorMessage}")
+                        isLastPage = true
+                        binding.progressBar6.visibility = View.GONE
                         Toast.makeText(requireContext(), result.errorMessage, Toast.LENGTH_SHORT)
                             .show()
                     }
@@ -124,10 +139,40 @@ class SecondFragment : Fragment() {
     }
 
     private fun initRv() {
+        layoutManager = GridLayoutManager(requireContext(), 3)
         moviesByGenreAdapter = MoviesByGenreAdapter(findNavController())
         val rv = binding.rvMoviesByGenre
         rv.setHasFixedSize(true)
-        rv.layoutManager = GridLayoutManager(requireContext(), 3)
+        rv.layoutManager = layoutManager
         rv.adapter = moviesByGenreAdapter
+    }
+
+    private fun loadMore() {
+        binding.apply {
+//            isLoadMore = true
+            rvMoviesByGenre.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
+                override fun isLastPage(): Boolean = isLastPage
+
+                override fun isLoading(): Boolean = isLoadMore
+
+                override fun loadMoreItems() {
+                    isLoadMore = true
+                    page++
+                    progressBar6.visibility = View.VISIBLE
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        getDiscoverMoviesByGenre(
+                            api_key = BuildConfig.API_KEY_TOKEN,
+                            language = getString(R.string.language),
+                            sort_by = getString(R.string.sort_by_for_movieByGenre),
+                            include_adult = getString(R.string.true_string),
+                            include_video = getString(R.string.true_string),
+                            page = page.toString(),
+                            with_genres = genreModelBundle.id.toString(),
+                            with_watch_monetization_types = getString(R.string.with_watch_monetization_types_flatrate)
+                        )
+                    }
+                }
+            })
+        }
     }
 }
