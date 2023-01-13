@@ -2,7 +2,7 @@
     <string name="app_name">MandatoryTaskMandiri</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">Movie Mania</string>
+    <string name="movie_mania">Movie Mania</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
@@ -15,8 +15,22 @@
     <string name="true_string">true</string>
     <string name="false_string">false</string>
     <string name="with_watch_monetization_types_flatrate">flatrate</string>
+    <string name="status">Status</string>
+    <string name="genres">Genres</string>
+    <string name="release_date">Release Date</string>
+    <string name="show_trailer">Play Trailer</string>
+    <string name="author">Author</string>
+    <string name="created_at">Created at</string>
+    <string name="rating">Rating:</string>
+    <string name="user_review">User Review:</string>
+    <string name="no_review">No one has reviewed yet</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     //Content Description
     <string name="cd_arrow_genre_item">Button show preferred Genre</string>
     <string name="rv_movie_by_genre">List movie by preferred Genre</string>
     <string name="genre_model_key">genreModel</string>
+    <string name="movie_by_genre_model_key">movieByGenreModelKey</string>
+    <string name="content_description">Content description:</string>
+    <string name="movie_trailer_key">movieTrailerKey</string>
+    <string name="official_trailer">Official Trailer</string>
 </resources>
