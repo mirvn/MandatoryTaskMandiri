@@ -7,12 +7,13 @@
     android:paddingStart="8dp"
     android:paddingTop="8dp"
     android:paddingEnd="8dp"
-    tools:context=".ui.moviesbygenre.SecondFragment">
+    tools:context=".ui.moviesbygenre.MoviesByGenreFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMoviesByGenre"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/rv_movie_by_genre"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
