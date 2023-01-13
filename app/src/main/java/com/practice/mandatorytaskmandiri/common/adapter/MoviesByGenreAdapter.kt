@@ -1,5 +1,6 @@
 package com.practice.mandatorytaskmandiri.common.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.NavController
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.practice.mandatorytaskmandiri.BuildConfig
+import com.practice.mandatorytaskmandiri.R
 import com.practice.mandatorytaskmandiri.data.model.MovieByGenreModel
 import com.practice.mandatorytaskmandiri.databinding.MovieByGenreItemBinding
 
@@ -36,12 +38,12 @@ class MoviesByGenreAdapter(private val navController: NavController) :
     inner class GenresViewHolder(private val view: MovieByGenreItemBinding) :
         RecyclerView.ViewHolder(view.root) {
         fun bindImage(model: MovieByGenreModel.Result) {
-//            val bundle = Bundle() // Bundle to pass genreId
-//            bundle.putParcelable(itemView.context.getString(R.string.genre_model_key), model)
+            val bundle = Bundle() // Bundle to pass genreId
+            bundle.putParcelable(itemView.context.getString(R.string.movie_by_genre_model_key), model)
             view.imageMovieByGenreItem.apply {
                 Glide.with(itemView).load(BuildConfig.URL_TMDB_IMAGE + model.posterPath).into(this)
                 setOnClickListener {
-                    // navController.navigate(R.id.action_FirstFragment_to_SecondFragment)
+                    navController.navigate(R.id.action_MoviesByGenreFragment_to_detailMoviesFragment, bundle)
                 }
             }
         }
