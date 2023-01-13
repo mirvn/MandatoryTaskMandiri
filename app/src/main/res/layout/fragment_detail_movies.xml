@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detailmovie.DetailMoviesFragment">
+
+        <ProgressBar
+            android:id="@+id/progressBarReview"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvReview" />
+
+        <ProgressBar
+            android:id="@+id/progressBarStatus"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="3dp"
+            android:indeterminate="true"
+            android:indeterminateBehavior="cycle"
+            android:indeterminateTint="@color/primary"
+            android:max="@integer/material_motion_duration_short_1"
+            android:progress="@integer/material_motion_duration_short_1"
+            android:progressTint="@color/cloudy"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStatus"
+            app:layout_constraintStart_toStartOf="@+id/tvStatus"
+            app:layout_constraintTop_toTopOf="@+id/tvStatus" />
+
+        <ProgressBar
+            android:id="@+id/progressBarReleaseDate"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="3dp"
+            android:indeterminate="true"
+            android:indeterminateBehavior="cycle"
+            android:indeterminateTint="@color/primary"
+            android:max="@integer/material_motion_duration_short_1"
+            android:progress="@integer/material_motion_duration_short_1"
+            android:progressTint="@color/cloudy"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStatus"
+            app:layout_constraintStart_toEndOf="@+id/progressBarStatus"
+            app:layout_constraintTop_toTopOf="@+id/tvStatus" />
+
+        <ProgressBar
+            android:id="@+id/progressBarGenres"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:indeterminate="true"
+            android:indeterminateBehavior="cycle"
+            android:indeterminateTint="@color/primary"
+            android:max="@integer/material_motion_duration_short_1"
+            android:progress="@integer/material_motion_duration_short_1"
+            android:progressTint="@color/cloudy"
+            app:layout_constraintBottom_toBottomOf="@+id/tvGenres"
+            app:layout_constraintEnd_toEndOf="@+id/tvGenres"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tvGenres"
+            app:layout_constraintTop_toTopOf="@+id/tvGenres" />
+
+        <ProgressBar
+            android:id="@+id/progressBarContent"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:indeterminate="true"
+            android:indeterminateBehavior="cycle"
+            android:indeterminateTint="@color/primary"
+            android:max="@integer/material_motion_duration_short_1"
+            android:progress="@integer/material_motion_duration_short_1"
+            android:progressTint="@color/cloudy"
+            app:layout_constraintBottom_toBottomOf="@+id/tvOverview"
+            app:layout_constraintEnd_toEndOf="@+id/tvGenres"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tvGenres"
+            app:layout_constraintTop_toTopOf="@+id/tvOverview" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGenres" />
+
+        <TextView
+            android:id="@+id/tvGenres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvReleaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/tvStatus"
+            app:layout_constraintTop_toTopOf="@+id/tvStatus" />
+
+        <TextView
+            android:id="@+id/tvOverview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textStyle="italic"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvContentDescription" />
+
+        <Button
+            android:id="@+id/btnShowTrailer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/show_trailer"
+            android:visibility="visible"
+            app:icon="@drawable/ic_baseline_play_arrow_24"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvStatus" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvUserReview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvReview"
+            tools:listitem="@layout/user_review_item_rv" />
+
+        <TextView
+            android:id="@+id/tvReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/user_review"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/tvOverview"
+            app:layout_constraintTop_toBottomOf="@+id/tvOverview" />
+
+        <TextView
+            android:id="@+id/tvContentDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/content_description"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/tvOverview"
+            app:layout_constraintTop_toBottomOf="@+id/btnShowTrailer" />
+
+        <TextView
+            android:id="@+id/tvHasNoReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/no_review"
+            android:textStyle="bold|italic"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvReview" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
