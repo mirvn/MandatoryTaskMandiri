@@ -34,7 +34,7 @@ class GenreListAdapter(private val navController: NavController) :
             bundle.putParcelable(itemView.context.getString(R.string.genre_model_key), model)
             view.tvGenreItem.text = model.name
             view.imageButton.setOnClickListener {
-                navController.navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
+                navController.navigate(R.id.action_GenreListFragment_to_MoviesByGenreFragment, bundle)
             }
         }
     }
