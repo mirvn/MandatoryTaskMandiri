@@ -1,4 +1,4 @@
-package com.practice.mandatorytaskmandiri.common.heleper
+package com.practice.mandatorytaskmandiri.common.helper
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
