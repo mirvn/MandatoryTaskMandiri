@@ -23,9 +23,15 @@ object ApiConfig {
         }
     }
 
+    // logging with chucker
+//    private fun provideLoggingChuckerInterceptor(context: Context): ChuckerInterceptor {
+//        return ChuckerInterceptor.Builder(context).build()
+//    }
+
     private fun provideHttpClient(context: Context): OkHttpClient {
         return OkHttpClient.Builder().apply {
             addInterceptor(provideHttpInterceptor(context))
+//            addInterceptor(provideLoggingChuckerInterceptor(context)) // for Logging Purposes
             callTimeout(NETWORK_CALL_TIMEOUT, TimeUnit.SECONDS)
             connectTimeout(NETWORK_CALL_TIMEOUT, TimeUnit.SECONDS)
             readTimeout(NETWORK_CALL_TIMEOUT, TimeUnit.SECONDS)
