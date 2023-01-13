@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -15,7 +14,8 @@ import com.practice.mandatorytaskmandiri.BuildConfig
 import com.practice.mandatorytaskmandiri.R
 import com.practice.mandatorytaskmandiri.common.ViewModelFactory
 import com.practice.mandatorytaskmandiri.common.adapter.MoviesByGenreAdapter
-import com.practice.mandatorytaskmandiri.common.heleper.PaginationScrollListener
+import com.practice.mandatorytaskmandiri.common.helper.CollapsingToolbarHelper
+import com.practice.mandatorytaskmandiri.common.helper.PaginationScrollListener
 import com.practice.mandatorytaskmandiri.data.model.GenreModel
 import com.practice.mandatorytaskmandiri.data.model.MovieByGenreModel
 import com.practice.mandatorytaskmandiri.data.repositories.MoviesByGenreRepoImplementation
@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "SecondFragment"
 
-class SecondFragment : Fragment() {
+class MoviesByGenreFragment : Fragment() {
 
     private var _binding: FragmentMoviesByGenreBinding? = null
 
@@ -89,7 +89,17 @@ class SecondFragment : Fragment() {
                 0,
                 ""
             )
-        (activity as AppCompatActivity).supportActionBar?.title = genreModelBundle.name + " Movies"
+        CollapsingToolbarHelper().apply {
+            setImageToolbar(
+                activity?.findViewById(R.id.imgCollapsingToolbar),
+                null,
+                R.drawable.rectange_shape_collapsing_toolbar_bg
+            )
+            setTittleToolbar(
+                activity?.findViewById(R.id.collapsingToolbarLayout),
+                genreModelBundle.name + " Movies"
+            )
+        }
     }
 
     private fun getDiscoverMoviesByGenre(
